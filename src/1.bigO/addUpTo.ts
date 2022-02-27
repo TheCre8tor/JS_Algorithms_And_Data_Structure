@@ -33,7 +33,7 @@ const addUpTo = (n: number) => {
     ? to perform
 
     ! Five operation * n
-    ! n can be 100 || 1000 || billion
+    ! n can be 100 || 1000 || billion || trillions
   */
 };
 
