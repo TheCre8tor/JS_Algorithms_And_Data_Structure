@@ -122,13 +122,113 @@
 */
 
 // FILL IN THE BLANK ->
-function charCount(str: string): object {
-  // make object to return at end
-  // loop over string, for each character...
-  // if the char is a number/letter AND is a key in the object, add one to count.
-  // if the char is a number/letter AND not in object, add it to object and set value to 1.
-  // if char is something else (space, period, etc.) don't do anything
-  // return object at end
+// function charCount(str: string): object {
+// make object to return at end
 
-  return {};
+// loop over string, for each character...
+
+// if the char is a number/letter AND is a key in the object, add one to count.
+
+// if the char is a number/letter AND not in object, add it to object and set value to 1.
+
+// if char is something else (space, period, etc.) don't do anything
+
+// return object at end
+
+//   return {};
+// }
+
+// ### ------------------------------------------- - -->
+
+/* # 4. Solve/Simplify ->
+   1. Find the core difficulty in what
+      you're trying to do.
+   2. Temporarily ignore that difficulty
+   3. Write a simplified solution
+   4. Then incorporate that difficulty back in.
+   
+   */
+
+type Mapish = { [T: string]: number };
+
+function charCounts(str: string): {} {
+  // make object to return at end
+  let result: Mapish = {};
+
+  // loop over string, for each character...
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i].toLowerCase();
+
+    // if char is something else (space, period, etc.) don't do anything
+    const testAlphaNumeric = /[a-z0-9]/.test(char);
+
+    if (testAlphaNumeric) {
+      // if the char is a number/letter AND is a key in the object, add one to count.
+      if (result[char] > 0) {
+        result[char]++;
+      }
+      // if the char is a number/letter AND not in object, add it to object and set value to 1.
+      else {
+        result[char] = 1;
+      }
+    }
+  }
+
+  // return object at end
+  return result;
+}
+
+console.log(charCounts("Hello There!@"));
+
+// Refactoring 1 -->
+function charCount(str: string) {
+  let obj: Mapish = {};
+
+  for (let char of str) {
+    char = char.toLowerCase();
+
+    // if char is something else (space, period, etc.) don't do anything
+    const testAlphaNumeric = /[a-z0-9]/.test(char);
+
+    if (testAlphaNumeric) {
+      obj[char] = ++obj[char] || 1;
+    }
+  }
+
+  return obj;
+}
+
+console.log(charCount("Hello There!@"));
+
+// Refactoring 2 -->
+function charCountx(str: string) {
+  let obj: Mapish = {};
+
+  for (let char of str) {
+    if (isAlphaNumeric(char)) {
+      char = char.toLowerCase();
+
+      obj[char] = ++obj[char] || 1;
+    }
+  }
+
+  return obj;
+}
+
+console.log(charCount("Hello There!@"));
+
+function isAlphaNumeric(char: string) {
+  // NOTE: It's more effecient to use charCodeAt
+  // than Regular expression.
+  let code = char.charCodeAt(0);
+
+  if (
+    !(code > 47 && code < 58) &&
+    !(code > 64 && code < 91) &&
+    !(code > 96 && code < 123)
+  ) {
+    return false;
+  } else {
+    return true;
+  }
 }
