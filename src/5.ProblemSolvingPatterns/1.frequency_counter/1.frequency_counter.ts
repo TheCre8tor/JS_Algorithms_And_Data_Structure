@@ -1,12 +1,12 @@
-type List = { [K: string]: number };
+type Map = { [K: string]: number };
 
 function same(arr1: number[], arr2: number[]) {
   if (arr1.length !== arr2.length) {
     return false;
   }
 
-  let frequencyCounter1: List = {};
-  let frequencyCounter2: List = {};
+  let frequencyCounter1: Map = {};
+  let frequencyCounter2: Map = {};
 
   for (let val of arr1) {
     frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1;
